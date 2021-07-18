@@ -15,8 +15,8 @@ dependencies:
 
 ### Android
 
-Minimum SDK version:  `21` 
-Applications targeting SDK 30 (Android 11) need to declare  `TextToSpeech.Engine.INTENT_ACTION_TTS_SERVICE` in the `queries` elements of Android Manifest (See [Android documentation](https://developer.android.com/reference/android/speech/tts/TextToSpeech)).
+- Minimum SDK version:  `21` 
+- Applications targeting SDK 30 (Android 11) need to declare  `TextToSpeech.Engine.INTENT_ACTION_TTS_SERVICE` in the `queries` elements of Android Manifest (See [Android documentation](https://developer.android.com/reference/android/speech/tts/TextToSpeech)).
 
 ```
 <queries>
@@ -29,14 +29,15 @@ Applications targeting SDK 30 (Android 11) need to declare  `TextToSpeech.Engine
 ### iOS & macOS
 
 - iOS minimum version: `7.0`
-- macOs minimum version `10.14` 
-  (See [Apple documentation]([https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer)))
+- macOs minimum version `10.14`
+
+(See [Apple documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer)).
 
 ## Features
 
 
 | Feature      | Android            | iOS                | web                | macOS              |
-| ------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| ------------ | ------------------ |f ------------------ | ------------------ | ------------------ |
 | speak        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | stop         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | pause        | -                  | :white_check_mark: | :white_check_mark: | :white_check_mark: |
