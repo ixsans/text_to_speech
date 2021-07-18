@@ -75,7 +75,7 @@ Volume range: `0-1`. Default value: `1` (maximum)
 
 ```
 double volume = 1.0;
-Tts.setVolume(volume);  
+tts.setVolume(volume);  
 ```
 
 **Set Rate**
@@ -83,7 +83,7 @@ Volume range: `0-2`. Default value: `1` (standard). Give 2 will make voice 2x fa
 
 ```
 double rate = 1.0;
-Tts.setRate(rate);  
+tts.setRate(rate);  
 ```
 
 **Set Pitch**
@@ -91,7 +91,7 @@ Pitch range: `0-2`. Default value: `1`
 
 ```
 double pitch = 1.0;
-Tts.setPitch(pitch);  
+tts.setPitch(pitch);  
 ```
 
 **Set Language**
@@ -99,7 +99,7 @@ Accepting locale tag name of specific language, e.g. 'en-US'. You can retrieve l
 
 ```
 String language = 'en-US';
-Tts.setLanguage(language);  
+tts.setLanguage(language);  
 ```
 
 **Get Languages**
@@ -107,17 +107,17 @@ Provide list of supported language codes in locale tag name format, e.g. 'en-US'
 
 ```
 String language = 'en-US';
-Tts.setLanguage(language);  
+tts.setLanguage(language);  
 ```
 
 **Get Voice**
 We can get all available voices or get voices of specific language. This function will returns particular voice name.
 
 ```
-List<String> voices = await Tts.getVoices();
+List<String> voices = await tts.getVoices();
 
 String language = 'en-US';
-List<String> voices = await Tts.getVoiceByLang(language);
+List<String> voices = await tts.getVoiceByLang(language);
 ```
 
 
@@ -129,7 +129,7 @@ List<String> voices = await Tts.getVoiceByLang(language);
 
 ## Example
 
-You can find example in the [example](https://github.com/ixsans/tts/tree/main/example) folder and run it to check the implementation. 
+You can find example in the [example](https://github.com/ixsans/text_to_speech/tree/main/example) folder and run it to check the implementation. 
 Move to example directory:
 
 ```
