@@ -2,13 +2,13 @@
 
 A Flutter plugin provides TTS (Text-To-Speech) Service. This plugin aims to offer the most from iOS, Android, web, and macOS.
 
-## Usage
+## Getting Started 
 
-To use this plugin, add `tts` as a dependency in your pubspec.yaml file:
+To use this plugin, add `text_to_speech` as a dependency in your pubspec.yaml file:
 
 ```yaml
 dependencies:
-  tts: ^1.0.0
+  text_to_speech: ^0.1.0
 ```
 
 ## Installation
@@ -54,14 +54,20 @@ Applications targeting SDK 30 (Android 11) need to declare  `TextToSpeech.Engine
 To start, import the dependency in your code:
 
 ```
-import 'package:tts/tts.dart';
+import 'package:text_to_speech/text_to_speech.dart';
+```
+
+Then, create instance of TextToSpeech class:
+
+```
+TextToSpeech tts = 
 ```
 
 **Speak** 
 
 ```
 String text = "Hello, Good Morning!";
-Tts.speak(text);
+tts.speak(text);
 ```
 
 **Set Volume**
