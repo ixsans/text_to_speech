@@ -4,8 +4,8 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'text_to_speech'
-  s.version          = '0.0.1'
-  s.summary          = 'A new flutter plugin project.'
+  s.version          = '0.1.0'
+  s.summary          = 'A Flutter plugin provides TTS (Text-To-Speech) Service.'
   s.description      = <<-DESC
 A new flutter plugin project.
                        DESC
@@ -16,7 +16,7 @@ A new flutter plugin project.
   s.source_files     = 'Classes/**/*'
   s.dependency 'FlutterMacOS'
 
-  s.platform = :osx, '10.11'
+  s.platform = :osx, '10.14'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end

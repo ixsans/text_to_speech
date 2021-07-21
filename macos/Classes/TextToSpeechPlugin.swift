@@ -2,6 +2,8 @@ import Cocoa
 import FlutterMacOS
 
 public class TextToSpeechPlugin: NSObject, FlutterPlugin {
+  let tts = Tts()
+
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "dev.ixsans/text_to_speech", binaryMessenger: registrar.messenger)
     let instance = TextToSpeechPlugin()
