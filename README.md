@@ -35,9 +35,8 @@ dependencies:
 
 ## Features
 
-
 | Feature      | Android            | iOS                | web                | macOS              |
-| ------------ | ------------------ |f ------------------ | ------------------ | ------------------ |
+| ------------ | ------------------ | ------------------ | ------------------ | ------------------ |
 | speak        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | stop         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | pause        | -                  | :white_check_mark: | :white_check_mark: | :white_check_mark: |
@@ -48,6 +47,7 @@ dependencies:
 | set language | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | get language | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | get voice    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+
 
 
 ## Usages
@@ -154,4 +154,3 @@ Run macOS
 ```
 $ flutter run -d macOS
 ```
-
