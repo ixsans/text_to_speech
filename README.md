@@ -2,6 +2,8 @@
 
 A Flutter plugin provides TTS (Text-To-Speech) Service. This plugin aims to offer the most from iOS, Android, web, and macOS.
 
+![screenshot.png](screenshot.png)
+
 ## Getting Started 
 
 To use this plugin, add `text_to_speech` as a dependency in your pubspec.yaml file:
@@ -61,7 +63,7 @@ import 'package:text_to_speech/text_to_speech.dart';
 Then, create instance of TextToSpeech class:
 
 ```
-TextToSpeech tts = 
+TextToSpeech tts = TextToSpeech();
 ```
 
 **Speak** 
