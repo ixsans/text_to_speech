@@ -2,7 +2,7 @@
   
 A Flutter plugin provides TTS (Text-To-Speech) Service. This plugin aims to offer the most of TTS API feature from iOS, Android, web, and macOS.  
   
-![screenshot.png](https://raw.githubusercontent.com/ixsans/text_to_speech/main/screenshot.png)  
+![screenshot.png](screenshot.png)  
   
 ## Getting Started  
   
@@ -135,7 +135,7 @@ List<String> voices = await tts.getVoiceByLang(language);
   
 - Android TTS API: https://developer.android.com/reference/android/speech/tts/TextToSpeech  
 - iOS/macOS AVSpeechSynthesizer API: https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer  
-- Web Speech API: (**https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section**)  
+- Web Speech API: https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section  
   
 ## Example  
   
