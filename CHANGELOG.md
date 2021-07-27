@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Migrate to Platform Interface
+
 ## 0.1.1
 
 * Fix macOS issue

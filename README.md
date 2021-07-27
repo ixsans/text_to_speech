@@ -10,7 +10,7 @@ To use this plugin, add `text_to_speech` as a dependency in your pubspec.yaml fi
   
 ```yaml  
 dependencies:  
-  text_to_speech: ^0.1.0  
+  text_to_speech: ^0.2.0  
 ```  
   
 ## Installation  
