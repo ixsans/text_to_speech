@@ -1,7 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
 import 'package:text_to_speech_platform_interface/text_to_speech_platform.dart';
 
 /// TextToSpeech class provides bridge between flutter and platform specific Text-To-Speech (TTS) API
