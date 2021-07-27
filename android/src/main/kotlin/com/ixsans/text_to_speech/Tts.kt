@@ -85,7 +85,7 @@ class Tts(context: Context)  {
         return tts.setPitch(pitch) == TextToSpeech.SUCCESS
     }
 
-    fun getDefaultLanguage(): String {
+    fun getDefaultLanguage(): String? {
         return tts.defaultVoice.locale.toLanguageTag()
     }
 

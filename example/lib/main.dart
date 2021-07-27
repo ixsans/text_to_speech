@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 import 'package:text_to_speech/text_to_speech.dart';
 
 void main() {
@@ -18,17 +19,14 @@ class _MyAppState extends State<MyApp> {
   TextToSpeech tts = TextToSpeech();
 
   String text = '';
-  double volume = 1; // 0-1
-  double rate = 1.0; // 0-2
-  double pitch = 1.0; // 0-2
+  double volume = 1; // Range: 0-1
+  double rate = 1.0; // Range: 0-2
+  double pitch = 1.0; // Range: 0-2
 
-  /// language
   String? language;
   String? languageCode;
-  List<String> languages = [];
-  List<String> languageCodes = [];
-
-  /// voice
+  List<String> languages = <String>[];
+  List<String> languageCodes = <String>[];
   String? voice;
 
   TextEditingController textEditingController = TextEditingController();
@@ -47,13 +45,16 @@ class _MyAppState extends State<MyApp> {
     languageCodes = await tts.getLanguages();
 
     /// populate displayed language (i.e. English)
-    List<dynamic> displayLanguages = await tts.getDisplayLanguages();
+    final List<String>? displayLanguages = await tts.getDisplayLanguages();
+    if (displayLanguages == null) {
+      return;
+    }
+
     languages.clear();
-    for (dynamic lang in displayLanguages) {
+    for (final dynamic lang in displayLanguages) {
       languages.add(lang as String);
     }
 
-    /// get default language
     final String? defaultLangCode = await tts.getDefaultLanguage();
     if (defaultLangCode != null && languageCodes.contains(defaultLangCode)) {
       languageCode = defaultLangCode;
@@ -71,8 +72,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<String?> getVoiceByLang(String lang) async {
-    List<String> voices = await tts.getVoiceByLang(languageCode!);
-    if (voices.isNotEmpty) {
+    final List<String>? voices = await tts.getVoiceByLang(languageCode!);
+    if (voices != null && voices.isNotEmpty) {
       return voices.first;
     }
     return null;
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                   TextField(
                     controller: textEditingController,
                     maxLines: 5,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Enter some text here...'),
                     onChanged: (String newText) {
@@ -105,7 +106,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Row(
                     children: <Widget>[
-                      Text('Volume'),
+                      const Text('Volume'),
                       Expanded(
                         child: Slider(
                           value: volume,
@@ -125,7 +126,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Row(
                     children: <Widget>[
-                      Text('Rate'),
+                      const Text('Rate'),
                       Expanded(
                         child: Slider(
                           value: rate,
@@ -144,7 +145,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Row(
                     children: <Widget>[
-                      Text('Pitch'),
+                      const Text('Pitch'),
                       Expanded(
                         child: Slider(
                           value: pitch,
@@ -163,8 +164,8 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Row(
                     children: <Widget>[
-                      Text('Language'),
-                      SizedBox(
+                      const Text('Language'),
+                      const SizedBox(
                         width: 20,
                       ),
                       DropdownButton<String>(
@@ -195,28 +196,28 @@ class _MyAppState extends State<MyApp> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     children: <Widget>[
-                      Text('Voice'),
-                      SizedBox(
+                      const Text('Voice'),
+                      const SizedBox(
                         width: 20,
                       ),
-                      Text('${voice ?? '-'}'),
+                      Text(voice ?? '-'),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     children: <Widget>[
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.only(right: 10),
                           child: ElevatedButton(
-                            child: Text('Stop'),
+                            child: const Text('Stop'),
                             onPressed: () {
                               tts.stop();
                             },
@@ -226,9 +227,9 @@ class _MyAppState extends State<MyApp> {
                       if (supportPause)
                         Expanded(
                           child: Container(
-                            padding: EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.only(right: 10),
                             child: ElevatedButton(
-                              child: Text('Pause'),
+                              child: const Text('Pause'),
                               onPressed: () {
                                 tts.pause();
                               },
@@ -238,9 +239,9 @@ class _MyAppState extends State<MyApp> {
                       if (supportResume)
                         Expanded(
                           child: Container(
-                            padding: EdgeInsets.only(right: 10),
+                            padding: const EdgeInsets.only(right: 10),
                             child: ElevatedButton(
-                              child: Text('Resume'),
+                              child: const Text('Resume'),
                               onPressed: () {
                                 tts.resume();
                               },
@@ -250,7 +251,7 @@ class _MyAppState extends State<MyApp> {
                       Expanded(
                           child: Container(
                         child: ElevatedButton(
-                          child: Text('Speak'),
+                          child: const Text('Speak'),
                           onPressed: () {
                             speak();
                           },

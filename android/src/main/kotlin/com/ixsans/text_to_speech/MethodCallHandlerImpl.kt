@@ -109,7 +109,7 @@ class MethodCallHandlerImpl(private val tts: Tts) :
         return tts.setLanguage(lang)
     }
 
-    private fun getDefaultLanguage(): String {
+    private fun getDefaultLanguage(): String? {
         return tts.getDefaultLanguage()
     }
 
