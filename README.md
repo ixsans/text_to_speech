@@ -74,7 +74,8 @@ tts.speak(text);
 ```
 
 **Set Volume**
-Volume range: `0-1`. Default value: `1` (maximum)
+
+Volume range: `0-1` where 0 is silence, and 1 is the maximum volume (the default behavior).
 
 ```
 double volume = 1.0;
@@ -82,7 +83,10 @@ tts.setVolume(volume);
 ```
 
 **Set Rate**
-Volume range: `0-2`. Default value: `1` (standard). Give 2 will make voice 2x faster. Give 0.5 will make voice half slower.
+
+Rate range: `0-2`.
+1.0 is the normal and default speech rate, lower values slow down the speech (0.5 is half the normal speech rate),
+greater values accelerate it (2.0 is twice the normal speech rate).
 
 ```
 double rate = 1.0;
@@ -90,7 +94,9 @@ tts.setRate(rate);
 ```
 
 **Set Pitch**
-Pitch range: `0-2`. Default value: `1`
+
+Pitch range: `0-2`.
+1.0 is the normal pitch, lower values lower the tone of the synthesized voice, greater values increase it.
 
 ```
 double pitch = 1.0;
@@ -98,6 +104,7 @@ tts.setPitch(pitch);
 ```
 
 **Set Language**
+
 Accepting locale tag name of specific language, e.g. 'en-US'. You can retrieve list of supported language using `getLanguage` function.
 
 ```
@@ -106,6 +113,7 @@ tts.setLanguage(language);
 ```
 
 **Get Languages**
+
 Provide list of supported language codes in locale tag name format, e.g. 'en-US'. You can get display name for specific language code
 
 ```
@@ -114,6 +122,7 @@ tts.setLanguage(language);
 ```
 
 **Get Voice**
+
 We can get all available voices or get voices of specific language. This function will returns particular voice name.
 
 ```
