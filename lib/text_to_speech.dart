@@ -7,9 +7,9 @@ import 'package:text_to_speech_platform_interface/text_to_speech_platform.dart';
 /// subset of TTS native API from respective supported platforms.
 class TextToSpeech {
 
-  /// Start speak new utterance
+  /// Start speak utterance of the given [text]
   ///
-  /// If there's running utterance, it will be stopped immediately and new utterance will starts
+  /// If there's a running utterance, it will be stopped immediately and new utterance will starts
   Future<bool?> speak(String text) => TextToSpeechPlatform.instance.speak(text);
 
   /// Stop current utterance immediately
@@ -34,7 +34,7 @@ class TextToSpeech {
 
   /// Set volume of next utterance
   ///
-  /// Volume is specified as a float ranging from 0 to 1 where 0 is silence, and 1 is the maximum volume (the default behavior).
+  /// Volume is specified as a double ranging from 0 to 1 where 0 is silence, and 1 is the maximum volume (the default behavior).
   Future<bool?> setVolume(num volume) =>
       TextToSpeechPlatform.instance.setVolume(volume);
 
@@ -44,7 +44,7 @@ class TextToSpeech {
   Future<bool?> setPitch(num pitch) =>
       TextToSpeechPlatform.instance.setPitch(pitch);
 
-  /// Set volume for next utterance
+  /// Set language for next utterance
   Future<bool?> setLanguage(String language) =>
       TextToSpeechPlatform.instance.setLanguage(language);
 
