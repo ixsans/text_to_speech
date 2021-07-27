@@ -2,7 +2,7 @@
 
 A Flutter plugin provides TTS (Text-To-Speech) Service. This plugin aims to offer the most from iOS, Android, web, and macOS.
 
-![screenshot.png](screenshot.png)
+![screenshot.png](https://raw.githubusercontent.com/ixsans/text_to_speech/main/screenshot.png)
 
 ## Getting Started
 
