@@ -2,7 +2,7 @@
   
 A Flutter plugin provides TTS (Text-To-Speech) Service. This plugin aims to offer the most of TTS API feature from iOS, Android, web, and macOS.  
   
-![screenshot.png](screenshot.png)  
+![screenshot.png](https://raw.githubusercontent.com/ixsans/text_to_speech/main/screenshot.png)  
   
 ## Getting Started  
   
@@ -10,7 +10,7 @@ To use this plugin, add `text_to_speech` as a dependency in your pubspec.yaml fi
   
 ```yaml  
 dependencies:  
-  text_to_speech: ^0.2.1
+  text_to_speech: ^0.2.3
 ```  
   
 ## Installation  
@@ -35,21 +35,20 @@ dependencies:
   
 (See [Apple documentation](https://developer.apple.com/documentation/avfaudio/avspeechsynthesizer)).  
   
-## Features    
+## Features
 
-| Feature      | Android            | iOS                | web                | macOS              |  
-| ------------ | ------------------ | ------------------ | ------------------ | ------------------ |  
-| speak        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| stop         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| pause        | -                  | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| resume       | -                  | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| set volume   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| set rate     | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| set pitch    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| set language | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
-| get language | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |  
+|    Feature   |       Android      |         iOS        |         Web        |        macOS       |
+|:------------:|:------------------:|:------------------:|:------------------:|:------------------:|
+| speak        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| stop         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| pause        |          -         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| resume       |          -         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| set volume   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| set rate     | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| set pitch    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| set language | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| get language | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | get voice    | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-
 
 ## Usages  
   
