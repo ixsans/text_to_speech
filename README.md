@@ -4,7 +4,7 @@ A Flutter plugin provides TTS (Text-To-Speech) Service. This plugin aims to offe
 
 ![screenshot.png](screenshot.png)
 
-## Getting Started 
+## Getting Started
 
 To use this plugin, add `text_to_speech` as a dependency in your pubspec.yaml file:
 
@@ -17,7 +17,7 @@ dependencies:
 
 ### Android
 
-- Minimum SDK version:  `21` 
+- Minimum SDK version:  `21`
 - Applications targeting SDK 30 (Android 11) need to declare  `TextToSpeech.Engine.INTENT_ACTION_TTS_SERVICE` in the `queries` elements of Android Manifest (See [Android documentation](https://developer.android.com/reference/android/speech/tts/TextToSpeech)).
 
 ```
@@ -25,7 +25,7 @@ dependencies:
   <intent>
       <action android:name="android.intent.action.TTS_SERVICE" />
   </intent>
- </queries> 
+ </queries>
 ```
 
 ### iOS & macOS
@@ -66,7 +66,7 @@ Then, create instance of TextToSpeech class:
 TextToSpeech tts = TextToSpeech();
 ```
 
-**Speak** 
+**Speak**
 
 ```
 String text = "Hello, Good Morning!";
@@ -78,7 +78,7 @@ Volume range: `0-1`. Default value: `1` (maximum)
 
 ```
 double volume = 1.0;
-tts.setVolume(volume);  
+tts.setVolume(volume);
 ```
 
 **Set Rate**
@@ -86,7 +86,7 @@ Volume range: `0-2`. Default value: `1` (standard). Give 2 will make voice 2x fa
 
 ```
 double rate = 1.0;
-tts.setRate(rate);  
+tts.setRate(rate);
 ```
 
 **Set Pitch**
@@ -94,7 +94,7 @@ Pitch range: `0-2`. Default value: `1`
 
 ```
 double pitch = 1.0;
-tts.setPitch(pitch);  
+tts.setPitch(pitch);
 ```
 
 **Set Language**
@@ -102,7 +102,7 @@ Accepting locale tag name of specific language, e.g. 'en-US'. You can retrieve l
 
 ```
 String language = 'en-US';
-tts.setLanguage(language);  
+tts.setLanguage(language);
 ```
 
 **Get Languages**
@@ -110,7 +110,7 @@ Provide list of supported language codes in locale tag name format, e.g. 'en-US'
 
 ```
 String language = 'en-US';
-tts.setLanguage(language);  
+tts.setLanguage(language);
 ```
 
 **Get Voice**
@@ -132,7 +132,7 @@ List<String> voices = await tts.getVoiceByLang(language);
 
 ## Example
 
-You can find example in the [example](https://github.com/ixsans/text_to_speech/tree/main/example) folder and run it to check the implementation. 
+You can find example in the [example](https://github.com/ixsans/text_to_speech/tree/main/example) folder and run it to check the implementation.
 Move to example directory:
 
 ```

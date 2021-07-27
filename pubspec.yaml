@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
+  text_to_speech_platform_interface: ^0.1.3
+  text_to_speech_web: ^0.1.2
+  text_to_speech_macos: ^0.1.1
 
 dev_dependencies:
   flutter_test:
@@ -34,10 +37,7 @@ flutter:
       ios:
         pluginClass: TextToSpeechPlugin
       web:
-        pluginClass: TextToSpeechWeb
-        fileName: text_to_speech_web.dart
+        default_package: text_to_speech_web
       macos:
-        pluginClass: TextToSpeechPlugin
+        default_package: text_to_speech_macos
 
-  assets:
-    - packages/text_to_speech/assets/locales.json

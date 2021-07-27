@@ -2,143 +2,87 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:text_to_speech_platform_interface/text_to_speech_platform.dart';
 
+/// TextToSpeech class provides bridge between flutter and platform specific Text-To-Speech (TTS) API
+///
+/// This class communicate to platform interface through [TextToSpeechPlatform] instance that contains
+/// subset of TTS native API from respective supported platforms.
 class TextToSpeech {
-  static const MethodChannel _channel =
-      const MethodChannel('dev.ixsans/text_to_speech');
 
-  Map<String, dynamic>? locales;
+  /// Start speak new utterance
+  ///
+  /// If there's running utterance, it will be stopped immediately and new utterance will starts
+  Future<bool?> speak(String text) => TextToSpeechPlatform.instance.speak(text);
 
-  Future<bool> speak(String text) async {
-    if (text.isEmpty) {
-      return false;
-    }
+  /// Stop current utterance immediately
+  Future<bool?> stop() => TextToSpeechPlatform.instance.stop();
 
-    return await _channel
-        .invokeMethod('speak', <String, dynamic>{'text': text});
-  }
+  /// Pause current utterance immediately.
+  ///
+  /// This feature only available on iOS, macOS and web
+  Future<bool?> pause() => TextToSpeechPlatform.instance.pause();
 
-  Future<bool> stop() async {
-    return await _channel.invokeMethod('stop');
-  }
+  /// Resume current utterance immediately.
+  ///
+  /// This feature only available on iOS, macOS and web
+  Future<bool?> resume() => TextToSpeechPlatform.instance.resume();
 
-  Future<bool> pause() async {
-    return await _channel.invokeMethod('pause');
-  }
+  /// Set rate (tempo) for next utterance
+  ///
+  /// 1.0 is the normal speech rate, lower values slow down the speech (0.5 is half the normal speech rate),
+  /// greater values accelerate it (2.0 is twice the normal speech rate).
+  Future<bool?> setRate(num rate) =>
+      TextToSpeechPlatform.instance.setRate(rate);
 
-  Future<bool> resume() async {
-    return await _channel.invokeMethod('resume');
-  }
+  /// Set volume of next utterance
+  ///
+  /// Volume is specified as a float ranging from 0 to 1 where 0 is silence, and 1 is the maximum volume (the default behavior).
+  Future<bool?> setVolume(num volume) =>
+      TextToSpeechPlatform.instance.setVolume(volume);
 
-  Future<bool> setRate(num rate) async {
-    return await _channel
-        .invokeMethod('setRate', <String, dynamic>{'rate': rate});
-  }
+  /// Set pitch of next utterance
+  ///
+  /// 1.0 is the normal pitch, lower values lower the tone of the synthesized voice, greater values increase it.
+  Future<bool?> setPitch(num pitch) =>
+      TextToSpeechPlatform.instance.setPitch(pitch);
 
-  Future<bool> setVolume(num volume) async {
-    return await _channel
-        .invokeMethod('setVolume', <String, dynamic>{'volume': volume});
-  }
+  /// Set volume for next utterance
+  Future<bool?> setLanguage(String language) =>
+      TextToSpeechPlatform.instance.setLanguage(language);
 
-  Future<bool> setLanguage(String language) async {
-    if (language.isEmpty) {
-      return false;
-    }
+  /// Return list of supported language code (i.e en-US)
+  /// SpeechSynthesis Web API doesn't provide specific function to get supported language
+  /// We get it from getVoice function instead
+  Future<List<String>> getLanguages() =>
+      TextToSpeechPlatform.instance.getLanguages();
 
-    return await _channel
-        .invokeMethod('setLanguage', <String, dynamic>{'lang': language});
-  }
+  /// Returns default language
+  Future<String?> getDefaultLanguage() =>
+      TextToSpeechPlatform.instance.getDefaultLanguage();
 
-  Future<bool> setPitch(num pitch) async {
-    return await _channel
-        .invokeMethod('setPitch', <String, dynamic>{'pitch': pitch});
-  }
+  /// Returns list of language names (e.g English, Arabic)
+  Future<List<String>?> getDisplayLanguages() =>
+      TextToSpeechPlatform.instance.getDisplayLanguages();
 
-  /// Return language code i.e. en-US
-  Future<List<String>> getLanguages() async {
-    List<dynamic> langCodes = await _channel.invokeMethod('getLanguages');
-    return langCodes.map((dynamic e) => e as String).toList();
-  }
+  /// Returns list of language names by given [langCode]
+  ///
+  /// [langCode] is language code (e.g en-US)
+  Future<String?> getDisplayLanguageByCode(String langCode) =>
+      TextToSpeechPlatform.instance.getDisplayLanguageByCode(langCode);
 
-  Future<String> getDefaultLanguage() async {
-    return await _channel.invokeMethod('getDefaultLanguage') as String;
-  }
+  /// Returns language code by given [languageName]
+  ///
+  /// [languageName] should be from locales from [text_to_speech_platform_interface]
+  Future<String?> getLanguageCodeByName(String languageName) =>
+      TextToSpeechPlatform.instance.getLanguageCodeByName(languageName);
 
-  Future<List<String>> getDisplayLanguages() async {
-    locales ?? await getLocales();
+  /// Return supported voices
+  Future<List<String>?> getVoice() => TextToSpeechPlatform.instance.getVoice();
 
-    List<String> displayedLanguages = <String>[];
-    List<dynamic> langList = await getLanguages();
-    for (dynamic lang in langList) {
-      String? displayLang = await getDisplayLanguageByCode(lang);
-      if (displayLang != null) {
-        displayedLanguages.add(displayLang);
-      }
-    }
-    return displayedLanguages;
-  }
-
-  Future<String?> getDisplayLanguageByCode(String langCode) async {
-    if (langCode.isEmpty) {
-      return null;
-    }
-
-    if (locales == null) {
-      locales = await getLocales();
-    }
-
-    Map<String, dynamic> langNameMap =
-        locales!['language-names'] as Map<String, dynamic>;
-    if (langNameMap.containsKey(langCode)) {
-      final List<dynamic> langNames = langNameMap[langCode] as List<dynamic>;
-      String displayLang = langNames.first as String;
-      return displayLang;
-    }
-
-    return null;
-  }
-
-  Future<String?> getLanguageCodeByName(String languageName) async {
-    if (languageName.isEmpty) {
-      return null;
-    }
-
-    locales ?? await getLocales();
-
-    Map<String, dynamic> langName =
-        locales!['language-names'] as Map<String, dynamic>;
-
-    String? languageCode = langName.keys.firstWhereOrNull((dynamic key) {
-      List<dynamic> langNameList = langName[key as String] as List<dynamic>;
-      return (langNameList.first as String) == languageName;
-    });
-
-    return languageCode;
-  }
-
-  Future<List<String>> getVoice() async {
-    List<dynamic> voices = await _channel.invokeMethod('getVoices');
-    return voices.map((dynamic e) => e as String).toList();
-  }
-
-  Future<List<String>> getVoiceByLang(String lang) async {
-    List<dynamic> voices = await _channel
-        .invokeMethod('getVoiceByLanguage', <String, dynamic>{'lang': lang});
-    return voices.map((dynamic e) => e as String).toList();
-  }
-
-  Future<Map<String, dynamic>> getLocales() async {
-    String jsonString =
-        await rootBundle.loadString('packages/text_to_speech/assets/locales.json');
-    return jsonDecode(jsonString) as Map<String, dynamic>;
-  }
-}
-
-extension FirstWhereOrNullExtension<E> on Iterable<E> {
-  E? firstWhereOrNull(bool Function(E) test) {
-    for (E element in this) {
-      if (test(element)) return element;
-    }
-    return null;
-  }
+  /// Return list of voice by given [lang]
+  ///
+  /// [lang] is language code (e.g en-US)
+  Future<List<String>?> getVoiceByLang(String lang) =>
+      TextToSpeechPlatform.instance.getVoiceByLang(lang);
 }

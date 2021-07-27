@@ -47,13 +47,16 @@ class _MyAppState extends State<MyApp> {
     languageCodes = await tts.getLanguages();
 
     /// populate displayed language (i.e. English)
-    List<dynamic> displayLanguages = await tts.getDisplayLanguages();
+    List<String>? displayLanguages = await tts.getDisplayLanguages();
+    if (displayLanguages == null) {
+      return;
+    }
+
     languages.clear();
     for (dynamic lang in displayLanguages) {
       languages.add(lang as String);
     }
 
-    /// get default language
     final String? defaultLangCode = await tts.getDefaultLanguage();
     if (defaultLangCode != null && languageCodes.contains(defaultLangCode)) {
       languageCode = defaultLangCode;
@@ -71,8 +74,8 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<String?> getVoiceByLang(String lang) async {
-    List<String> voices = await tts.getVoiceByLang(languageCode!);
-    if (voices.isNotEmpty) {
+    List<String>? voices = await tts.getVoiceByLang(languageCode!);
+    if (voices != null && voices.isNotEmpty) {
       return voices.first;
     }
     return null;
