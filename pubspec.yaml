@@ -1,6 +1,6 @@
 name: text_to_speech
 description: A Flutter plugin provides TTS (Text-To-Speech) Service.
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/ixsans/text_to_speech
 
 environment:
