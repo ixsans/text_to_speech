@@ -68,7 +68,7 @@ class Tts(context: Context)  {
 
     // Set Language by given locale (locale format: en_US)
     fun setLanguage(lang: String): Boolean {
-        if (tts.availableLanguages.isNotEmpty()) {
+        if (!tts.availableLanguages.isNullOrEmpty()) {
             val selectedLocale: Locale? = tts.availableLanguages.firstOrNull {
                 it.toLanguageTag() == lang
             }
@@ -86,12 +86,12 @@ class Tts(context: Context)  {
     }
 
     fun getDefaultLanguage(): String? {
-        return tts.defaultVoice.locale.toLanguageTag()
+        return tts.defaultVoice?.locale?.toLanguageTag()
     }
 
     fun getAvailableLanguages(): List<String> {
         if (supportedLanguages.isEmpty()) {
-            supportedLanguages =  tts.availableLanguages.map { it.toLanguageTag() }
+            supportedLanguages =  tts.availableLanguages?.map { it.toLanguageTag() } ?: emptyList()
         }
         return supportedLanguages
     }
@@ -104,9 +104,9 @@ class Tts(context: Context)  {
     }
 
     fun getVoicesByLanguage(lang: String): List<String> {
-        return tts.voices.filter {
+        return tts.voices?.filter {
             it.locale.toLanguageTag() == lang
-        }.map { it.name }
+        }?.map { it.name } ?: emptyList()
     }
 
 }
