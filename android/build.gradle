@@ -2,14 +2,14 @@ group 'com.ixsans.text_to_speech'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.3.50'
+    ext.kotlin_version = '2.0.0'
     repositories {
         google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:8.5.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -26,6 +26,9 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
+    if (project.android.hasProperty("namespace")) {
+        namespace("com.ixsans.text_to_speech")
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
